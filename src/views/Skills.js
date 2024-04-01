@@ -115,7 +115,7 @@ const Skills = () => {
         <ThemeProvider theme={customTheme}>
             <Box sx={{
                 backgroundImage: `url(${backgroundImage})`,
-                height: '100vh',
+                minHeight: '100vh',
                 backgroundSize: 'cover',
                 display: 'flex',
                 flexDirection: 'column',
@@ -123,6 +123,7 @@ const Skills = () => {
                 justifyContent: 'center',
                 backgroundBlendMode: 'multiply',
                 backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                //overflow: 'hidden', // Added to prevent overflow
             }}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -131,7 +132,7 @@ const Skills = () => {
                     sx={{ maxWidth: 800, width: '90%', m: 3, p: 3, background: 'linear-gradient(145deg, #1e1e1e, #383838)', boxShadow: '0px 8px 25px rgba(33, 150, 243, 0.5)', borderRadius: '4px' }}
                 >
                     <CardContent>
-                        <Typography variant="h4" sx={{ mb: 3, textAlign: 'center', color: customTheme.palette.primary.contrastText }}>Skills Selection</Typography>
+                        <Typography  variant="h4" sx={{ mb: 3, textAlign: 'center', color: customTheme.palette.primary.contrastText }}>Skills Selection</Typography>
                         <FormControl fullWidth sx={{ mb: 2 }}>
                             <InputLabel>Category</InputLabel>
                             <Select
