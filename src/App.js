@@ -11,6 +11,24 @@ import AssignmentCreated from './views/AssignmentCreated';
 import CvList from './views/CvList';
 import Login from './views/Login';
 import './styles/App.css';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASPELAv9wKlf_j8V9KXj3RhbGQsqpA9k0",
+  authDomain: "spitzenklasse-7e8ed.firebaseapp.com",
+  projectId: "spitzenklasse-7e8ed",
+  storageBucket: "spitzenklasse-7e8ed.appspot.com",
+  messagingSenderId: "1088391952720",
+  appId: "1:1088391952720:web:1bad7432d31c6494999455",
+  measurementId: "G-ZB3WZ7MGNH"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth();
 
 function App() {
   return (
@@ -27,7 +45,7 @@ function App() {
             <Route path="/candidate-profile" element={<CandidateProfile />} />
             <Route path="/assignment-description" element={<AssignmentDescription />} />
             <Route path="/assignment-created" element={<AssignmentCreated />} />
-            <Route path="/cv-list" element={<CvList/>} />
+            <Route path="/cv-list" element={<CvList />} />
           </Routes>
         </main>
       </div>

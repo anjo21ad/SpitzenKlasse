@@ -49,8 +49,8 @@ const customTheme = createTheme({
 const Skills = () => {
     const navigate = useNavigate();
     const [category, setCategory] = useState('');
-    const [mustHaveSkills, setMustHaveSkills] = useState(Array(3).fill(''));
-    const [industryKnowledge, setIndustryKnowledge] = useState(Array(3).fill(''));
+    const [mustHaveSkills, setMustHaveSkills] = useState(Array(2).fill(''));
+    const [industryKnowledge, setIndustryKnowledge] = useState(Array(1).fill(''));
 
     const itSkillsOptions = [
         "Adobe Creative Suite", "Agile Methodologies", "Angular", "AR (Augmented Reality)",

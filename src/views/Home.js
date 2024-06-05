@@ -10,6 +10,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import InsightsIcon from '@mui/icons-material/Insights';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import backgroundImage from '../assets/inno.png';
+import { getAuth, signOut } from "firebase/auth";
 
 const customTheme = createTheme({
   palette: {
@@ -58,7 +59,15 @@ const customTheme = createTheme({
 
 const Home = () => {
   const navigate = useNavigate();
+  const auth = getAuth();
 
+  if (!auth.currentUser) {
+    navigate('/'); // Redirekter til login-siden, hvis brugeren ikke er logget ind
+    return null; // Afslut rendringen
+  }
+
+  // Fjern handleLogout funktionen herfra
+  
   const actions = [
     { title: 'Find Consultant', icon: <FindInPageIcon />, path: '/create-project' },
     { title: 'View Projects', icon: <ViewListIcon />, path: '/projects' },

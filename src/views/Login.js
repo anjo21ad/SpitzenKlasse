@@ -1,10 +1,11 @@
-import React from 'react';
-import { Box, Typography, Button, Card, CardContent, CardActions, Grid, ThemeProvider, createTheme } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Box, Typography, Button, Card, CardContent, CardActions, Grid, ThemeProvider, createTheme, FormControl, Select, MenuItem, InputLabel, TextField } from '@mui/material';
 import { motion } from 'framer-motion';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import WorkIcon from '@mui/icons-material/Work';
 import backgroundImage from '../assets/inno.png';
+import LoginWithFirebase from '../components/LoginWithFirebase';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const customTheme = createTheme({
   palette: {
@@ -21,6 +22,10 @@ const customTheme = createTheme({
       paper: '#1e1e1e',
     },
   },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 16,
+  },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -36,28 +41,20 @@ const customTheme = createTheme({
         },
       },
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          backdropFilter: 'blur(10px)',
-          boxShadow: '0px 8px 25px rgba(33, 150, 243, 0.5)',
-          transition: 'transform 0.2s ease-in-out',
-          '&:hover': {
-            transform: 'scale(1.02)',
-          },
-        },
-      },
-    },
   },
 });
 
 const Login = () => {
-  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState('');
 
   const options = [
-    { title: 'Business looking for consultants', icon: <BusinessCenterIcon />, path: '/business-login' },
+    { title: 'Business', icon: <BusinessCenterIcon />, path: '/home' },
     { title: 'Consultancy', icon: <WorkIcon />, path: '/consultancy-login' },
   ];
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -81,7 +78,7 @@ const Login = () => {
           transition={{ duration: 1.5 }}
         >
           <Typography
-            variant="h3"
+            variant="h4"
             gutterBottom
             sx={{
               color: 'primary.contrastText',
@@ -91,69 +88,40 @@ const Login = () => {
               textShadow: '2px 2px 8px rgba(33, 150, 243, 0.7)',
             }}
           >
-            Login to SpitzenKlasse
+            Welcome to SpitzenKlasse
           </Typography>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-        >
-          <Typography
-            variant="h5"
-            sx={{
-              color: 'primary.contrastText',
-              textAlign: 'center',
-              mb: 4,
-              textShadow: '1px 1px 4px rgba(33, 150, 243, 0.5)',
-            }}
+        <Typography variant="h6" sx={{ color: 'primary.contrastText', textAlign: 'center', mb: 4 }}>
+          Select your login type
+        </Typography>
+
+        <FormControl sx={{ m: 1, minWidth: 200 }}>
+          <InputLabel id="demo-simple-select-label">Login Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectedOption}
+            onChange={handleChange}
           >
-            Select your login type
-          </Typography>
-        </motion.div>
+            {options.map((option, index) => (
+              <MenuItem key={index} value={option.path}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  {option.icon}
+                  <Typography variant="body1" sx={{ color: 'primary.contrastText' }}>{option.title}</Typography>
+                </Box>
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-        <Grid container spacing={4} justifyContent="center">
-          {options.map((option, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Card
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    height: '100%',
-                    background: 'linear-gradient(145deg, #2a2a2a, #383838)',
-                    color: 'primary.contrastText',
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h5" component="div" sx={{ mb: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
-                      {option.icon}
-                      {option.title}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => navigate(option.path)}
-                      sx={{
-                        transition: 'transform 0.2s ease-in-out',
-                        '&:hover': {
-                          transform: 'scale(1.1)',
-                        },
-                      }}
-                    >
-                      Select
-                    </Button>
-                  </CardActions>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+        {/* Vis formularfelterne, når en option er valgt */}
+        {selectedOption && (
+          <Box sx={{ mt: 4 }}>
+            <LoginWithFirebase path={selectedOption} /> 
+          </Box>
+        )}
+
       </Box>
     </ThemeProvider>
   );
