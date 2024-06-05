@@ -100,7 +100,7 @@ const AssignmentDescription = () => {
                 />
 
                 <Stack direction="row" spacing={2} justifyContent="center">
-                    <Button variant="outlined" startIcon={<ArrowBackIcon />} onClick={() => navigate('/candidate-profile')} sx={{ borderColor: customTheme.palette.primary.main, color: customTheme.palette.primary.contrastText }}>
+                    <Button variant="outlined" startIcon={<ArrowBackIcon />} onClick={() => navigate('/skills')} sx={{ borderColor: customTheme.palette.primary.main, color: customTheme.palette.primary.contrastText }}>
                         Back
                     </Button>
                     <Button variant="contained" color="primary" endIcon={<SaveIcon />} onClick={handleDialogOpen}>

@@ -9,6 +9,7 @@ import CandidateProfile from './views/CandidateProfile';
 import AssignmentDescription from './views/AssignmentDescription';
 import AssignmentCreated from './views/AssignmentCreated';
 import CvList from './views/CvList';
+import Login from './views/Login';
 import './styles/App.css';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/create-project" element={<CreateProject />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/skills" element={<Skills />} />

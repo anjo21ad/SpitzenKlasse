@@ -44,7 +44,7 @@ function Header() {
   const matches = useMediaQuery('(min-width:600px)');
 
   const navigateHome = () => {
-    navigate('/');
+    navigate('/home');
   };
 
   return (

@@ -54,7 +54,7 @@ const CreateProjectScreen = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate('/home');
   };
 
   const displayRegion = () => region === '' ? 'Select Time Zone' : region;

@@ -73,7 +73,7 @@ const Skills = () => {
         "Virtual Reality/Augmented Reality", "Web Development"
       ];      
 
-    const handleNext = () => navigate('/candidate-profile');
+    const handleNext = () => navigate('/assignment-description');
     const handleBack = () => navigate('/experience');
 
     const renderSkillSelect = (skills, setSkills, options, label) => (
