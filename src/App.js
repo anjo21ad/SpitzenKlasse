@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -14,6 +15,7 @@ import './styles/App.css';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyASPELAv9wKlf_j8V9KXj3RhbGQsqpA9k0",
@@ -29,6 +31,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+const db = getFirestore(app);
 
 function App() {
   return (
@@ -54,3 +57,4 @@ function App() {
 }
 
 export default App;
+export { db };

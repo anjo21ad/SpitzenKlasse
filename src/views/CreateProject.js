@@ -1,10 +1,7 @@
+// CreateProject.js
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  Button, Modal, Box, TextField, Typography,
-  Card, CardContent, ThemeProvider, createTheme,
-  FormControl, InputLabel, Select, MenuItem
-} from '@mui/material';
+import { Button, Modal, Box, TextField, Typography, Card, CardContent, ThemeProvider, createTheme, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
