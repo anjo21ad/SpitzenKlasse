@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, useMediaQuery, ThemeProvider, Button } from '@mui/material';
-import testLogo from '../assets/testLogo.png'; // Husk at opdatere stien til logoet efter behov
+import testLogo from '../assets/testLogo.png'; 
 import { createTheme } from '@mui/material/styles';
 import { getAuth, signOut } from "firebase/auth";
 
@@ -45,13 +45,17 @@ function Header() {
   const auth = getAuth();
 
   const navigateHome = () => {
-    navigate('/');
+    if (auth.currentUser) {
+      navigate('/home');
+    } else {
+      navigate('/'); // Rediger til din login-side
+    }
   };
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/'); 
+      navigate('/'); // Rediger til din login-side
     } catch (error) {
       console.error("Fejl ved logout:", error);
     }
@@ -62,16 +66,20 @@ function Header() {
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between', // Ændret til space-between
+        justifyContent: 'space-between',
         padding: matches ? '15px 30px' : '10px 20px',
-        background: customTheme.palette.background.paper, // Bruger paper-farven fra temaet for at matche home view
+        background: customTheme.palette.background.paper, 
         boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .3)',
       }}>
         <Box onClick={navigateHome} sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
           <img src={testLogo} alt="SpitzenKlasse Logo" style={{ height: matches ? '60px' : '50px', marginRight: '15px' }} />
           <Typography variant={matches ? 'h4' : 'h5'} sx={{ color: customTheme.palette.primary.contrastText, fontWeight: 'bold' }}>SpitzenKlasse</Typography>
         </Box>
-        <Button variant="contained" color="primary" onClick={handleLogout}>Log ud</Button>
+        {auth.currentUser ? (
+          <Button variant="contained" color="primary" onClick={handleLogout}>Log ud</Button>
+        ) : (
+          <Button variant="contained" color="primary" onClick={() => navigate('/home')}>Login</Button> // Rediger til din login-side
+        )}
       </Box>
     </ThemeProvider>
   );

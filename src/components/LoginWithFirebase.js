@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, CircularProgress } from '@mui/material';
+import { Box, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -14,10 +14,9 @@ function LoginWithFirebase({ path }) {
   const handleLogin = async () => {
     setIsLoading(true);
     setError(null);
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate(path); 
+      navigate(path);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -28,10 +27,9 @@ function LoginWithFirebase({ path }) {
   const handleRegister = async () => {
     setIsLoading(true);
     setError(null);
-
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate(path); 
+      navigate(path);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -42,11 +40,10 @@ function LoginWithFirebase({ path }) {
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     setError(null);
-
     try {
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      navigate(path); 
+      await signInWithPopup(auth, provider);
+      navigate(path);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -62,7 +59,7 @@ function LoginWithFirebase({ path }) {
       justifyContent: 'center',
       height: 'auto',
       maxHeight: '80vh',
-      minWidth: '400px', 
+      minWidth: '400px',
       backgroundColor: 'rgba(0, 0, 0, 0.8)',
       padding: 4,
       borderRadius: 2,
@@ -81,6 +78,11 @@ function LoginWithFirebase({ path }) {
       >
         Login/Register
       </Typography>
+      {error && (
+        <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
+          {error}
+        </Alert>
+      )}
       <TextField
         label="Email"
         type="email"
@@ -99,32 +101,34 @@ function LoginWithFirebase({ path }) {
         fullWidth
         sx={{ backgroundColor: 'background.paper', borderRadius: 1 }}
       />
-      {error && <Typography color="error" variant="body2">{error}</Typography>}
       <Box sx={{ display: 'flex', gap: 2, mt: 2, width: '100%' }}>
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={handleLogin} 
-          disabled={isLoading} 
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLogin}
+          disabled={isLoading}
           sx={{ flexGrow: 1, padding: '8px 0' }}
+          aria-label="Login"
         >
           {isLoading ? <CircularProgress size={24} color="inherit" /> : "Login"}
         </Button>
-        <Button 
-          variant="outlined" 
-          color="primary" 
-          onClick={handleRegister} 
-          disabled={isLoading} 
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleRegister}
+          disabled={isLoading}
           sx={{ flexGrow: 1, padding: '8px 0' }}
+          aria-label="Register"
         >
           {isLoading ? <CircularProgress size={24} color="inherit" /> : "Register"}
         </Button>
-        <Button 
-          variant="contained" 
-          color="secondary" 
-          onClick={handleGoogleLogin} 
-          disabled={isLoading} 
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleGoogleLogin}
+          disabled={isLoading}
           sx={{ flexGrow: 1, padding: '8px 0' }}
+          aria-label="Login with Google"
         >
           {isLoading ? <CircularProgress size={24} color="inherit" /> : "Google Login"}
         </Button>

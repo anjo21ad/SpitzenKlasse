@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, Card, CardContent, CardActions, Grid, ThemeProvider, createTheme, FormControl, Select, MenuItem, InputLabel, TextField } from '@mui/material';
+import { Box, Typography, Button, FormControl, Select, MenuItem, InputLabel, ThemeProvider, createTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import WorkIcon from '@mui/icons-material/Work';
 import backgroundImage from '../assets/inno.png';
 import LoginWithFirebase from '../components/LoginWithFirebase';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const customTheme = createTheme({
   palette: {
@@ -97,12 +96,13 @@ const Login = () => {
         </Typography>
 
         <FormControl sx={{ m: 1, minWidth: 200 }}>
-          <InputLabel id="demo-simple-select-label">Login Type</InputLabel>
+          <InputLabel id="login-type-label">Login Type</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            labelId="login-type-label"
+            id="login-type"
             value={selectedOption}
             onChange={handleChange}
+            aria-labelledby="login-type-label"
           >
             {options.map((option, index) => (
               <MenuItem key={index} value={option.path}>
@@ -115,10 +115,9 @@ const Login = () => {
           </Select>
         </FormControl>
 
-        {/* Vis formularfelterne, når en option er valgt */}
         {selectedOption && (
           <Box sx={{ mt: 4 }}>
-            <LoginWithFirebase path={selectedOption} /> 
+            <LoginWithFirebase path={selectedOption} />
           </Box>
         )}
 

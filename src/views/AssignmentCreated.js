@@ -63,13 +63,13 @@ const AssignmentCreated = () => {
                     <Button variant="outlined" startIcon={<ArrowBackIcon />} onClick={() => navigate('/assignment-description')} sx={{ borderColor: customTheme.palette.primary.main, color: customTheme.palette.primary.contrastText }}>
                         Back
                     </Button>
-                    <Button variant="contained" endIcon={<ListIcon />} onClick={() => navigate('/cv-list')} sx={{ background: customTheme.palette.primary.main, '&:hover': { background: customTheme.palette.primary.dark } }}>
-                        View CV List
+                    <Button variant="contained" endIcon={<ListIcon />} onClick={() => navigate('/home')} sx={{ background: customTheme.palette.primary.main, '&:hover': { background: customTheme.palette.primary.dark } }}>
+                        Home
                     </Button>
                 </Stack>
             </Box>
         </ThemeProvider>
     );
-};
+};  
 
 export default AssignmentCreated;

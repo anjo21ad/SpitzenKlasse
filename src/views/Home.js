@@ -71,7 +71,7 @@ const Home = () => {
   const actions = [
     { title: 'Find Consultant', icon: <FindInPageIcon />, path: '/create-project' },
     { title: 'View Projects', icon: <ViewListIcon />, path: '/projects' },
-    { title: 'Consultant Profiles', icon: <PeopleIcon />, path: '/consultants' },
+    { title: 'Consultant Profiles', icon: <PeopleIcon />, path: '/cv-list' },
     { title: 'About Us', icon: <InfoIcon />, path: '/about' },
     { title: 'Contact Us', icon: <ContactMailIcon />, path: '/contact' },
     { title: 'Analytics', icon: <InsightsIcon />, path: '/analytics' },
